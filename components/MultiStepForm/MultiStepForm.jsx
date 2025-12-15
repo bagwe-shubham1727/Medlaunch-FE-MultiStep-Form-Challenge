@@ -8,6 +8,8 @@ import Step2 from "../Steps/Step2/Step2";
 import Step3 from "../Steps/Step3/Step3";
 import Step4 from "../Steps/Step4/Step4";
 import { Step } from "@mui/material";
+import Step5 from "../Steps/Step5/Step5";
+import Step6 from "../Steps/Step5/Step6";
 
 const MultiStepForm = () => {
   const { currentStep, showAlternateStep2 } = useFormContext();
@@ -23,9 +25,9 @@ const MultiStepForm = () => {
       case 4:
         return <Step4 />;
       case 5:
-        return <div>Step 5 - Coming Soon</div>;
+        return <Step5 />;
       case 6:
-        return <div>Step 6 - Coming Soon</div>;
+        return <Step6 />;
       default:
         return <Step1 />;
     }
