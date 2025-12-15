@@ -1,0 +1,505 @@
+.step {
+    background-color: var(--light-gray);
+    min-height: 60vh;
+    padding: var(--spacing-lg) 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Section styling */
+.section {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.sectionTitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--dark-gray2);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.sectionSubtitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Service Tabs */
+.serviceTabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-gray);
+    margin-bottom: var(--spacing-lg);
+    overflow-x: auto;
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--dark-gray);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tab:hover {
+    color: var(--accent-blue);
+}
+
+.tab.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* Search Bar */
+.searchContainer {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+}
+
+.searchInput {
+    width: 100%;
+    height: 44px;
+    padding: 0 40px 0 var(--spacing-md);
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-xl);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 86, 163, 0.1);
+}
+
+.searchInput::placeholder {
+    color: var(--dark-gray);
+}
+
+.searchIcon {
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dark-gray);
+    pointer-events: none;
+}
+
+/* Service Grid */
+.serviceGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.serviceCategory {
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    background-color: var(--white);
+}
+
+.categoryTitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 var(--spacing-md) 0;
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--light-gray);
+}
+
+/* Service Options (Checkboxes) */
+.serviceBlock {
+    margin-bottom: var(--spacing-sm);
+}
+
+.serviceOption {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.serviceOption input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.serviceOption label {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--text-dark);
+    cursor: pointer;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.serviceOption label:hover {
+    color: var(--accent-blue);
+}
+
+/* Contact Form (appears when service is selected) */
+.contactForm {
+    margin-top: var(--spacing-sm);
+    margin-left: 24px;
+    padding: var(--spacing-md);
+    background-color: #F8F9FA;
+    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--accent-blue);
+}
+
+.contactRow {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.contactRow:last-child {
+    margin-bottom: 0;
+}
+
+.contactField {
+    flex: 1;
+}
+
+.contactLabel {
+    display: block;
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contactInput {
+    width: 100%;
+    height: 36px;
+    padding: 0 var(--spacing-sm);
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    background-color: var(--white);
+    transition: border-color 0.2s ease;
+}
+
+.contactInput:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.contactInput::placeholder {
+    color: var(--dark-gray);
+}
+
+/* Add Service Button */
+.addServiceButton {
+    background: none;
+    border: 2px solid var(--accent-blue);
+    color: var(--accent-blue);
+    padding: 8px 24px;
+    border-radius: var(--radius-xl);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    margin-bottom: var(--spacing-lg);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.addServiceButton:hover {
+    background-color: var(--accent-blue);
+    color: var(--white);
+}
+
+/* Other Service Section */
+.otherServiceSection {
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.otherServiceInput {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.otherServiceInput .input {
+    flex: 1;
+    height: 44px;
+    padding: 0 var(--spacing-md);
+}
+
+.removeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-xs);
+    color: var(--dark-gray);
+    transition: color 0.2s ease;
+}
+
+.removeButton:hover {
+    color: var(--error-red);
+}
+
+/* Form Elements */
+.formGroup {
+    margin-bottom: var(--spacing-lg);
+}
+
+.formRow {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.formRow .formGroup {
+    flex: 1;
+}
+
+/* Label styling */
+.label {
+    display: block;
+    font-family: var(--font-family);
+    font-size: var(--font-size-large);
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Input styling */
+.input,
+.select {
+    width: 100%;
+    height: 44px;
+    padding: 0 var(--spacing-md);
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--text-dark);
+    background-color: var(--white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus,
+.select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 86, 163, 0.1);
+}
+
+.select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23707070' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+/* Tag Container */
+.tagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+/* Blue Filled Tags (for dates) */
+.tag {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background-color: var(--accent-blue);
+    color: var(--white);
+    padding: 6px 12px;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+}
+
+.tagRemove {
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 0;
+    margin-left: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+}
+
+.tagRemove:hover {
+    opacity: 0.7;
+}
+
+.tagRemove svg {
+    font-size: 18px !important;
+}
+
+/* Standard Tags - Blue Outline (for standards) */
+.standardTag {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background-color: var(--white);
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    padding: 6px 12px;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    font-weight: 500;
+}
+
+.standardTagRemove {
+    background: none;
+    border: none;
+    color: var(--accent-blue);
+    cursor: pointer;
+    padding: 0;
+    margin-left: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+}
+
+.standardTagRemove:hover {
+    opacity: 0.7;
+}
+
+.standardTagRemove svg {
+    font-size: 16px !important;
+}
+
+/* Helper Text */
+.helperText {
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    color: var(--dark-gray);
+    margin-top: var(--spacing-sm);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .serviceGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .formRow {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contactRow {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .otherServiceInput {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .serviceTabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .serviceTabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-small);
+    }
+
+    .section {
+        padding: var(--spacing-lg);
+    }
+
+    .sectionTitle {
+        font-size: var(--font-size-xl);
+    }
+
+    .contactForm {
+        margin-left: 0;
+        margin-top: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .step {
+        padding: var(--spacing-md) 0;
+    }
+
+    .section {
+        padding: var(--spacing-md);
+    }
+
+    .serviceTabs {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        border-bottom: none;
+    }
+
+    .tab {
+        width: 100%;
+        text-align: center;
+        padding: var(--spacing-sm);
+        border-bottom: 2px solid var(--border-gray);
+    }
+
+    .tab.active {
+        border-bottom-color: var(--accent-blue);
+    }
+
+    .serviceCategory {
+        padding: var(--spacing-md);
+    }
+
+    .tagContainer {
+        gap: var(--spacing-xs);
+    }
+
+    .tag,
+    .standardTag {
+        font-size: var(--font-size-small);
+        padding: 4px 10px;
+    }
+}

@@ -1,0 +1,401 @@
+.step {
+    background-color: var(--light-gray);
+    min-height: 60vh;
+    padding: var(--spacing-lg) 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Main White Background Container */
+.reviewContainer {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.mainTitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--dark-gray2);
+    margin: 0 0 var(--spacing-xl) 0;
+}
+
+/* Collapsible Sections */
+.section {
+    background-color: var(--white);
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.sectionHeader {
+    background-color: var(--accent-blue);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.sectionHeader:hover {
+    background-color: #004494;
+}
+
+.collapseIcon {
+    font-size: var(--font-size-small);
+    transition: transform 0.3s ease;
+    width: 16px;
+    text-align: center;
+}
+
+.sectionTitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+}
+
+.editButton {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease;
+}
+
+.editButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sectionContent {
+    padding: var(--spacing-lg);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Table Layout for Info */
+.infoTable {
+    width: 100%;
+}
+
+.infoRow {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.infoRow:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.label {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.value {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+/* Contact Information */
+.contactBlock {
+    margin-bottom: var(--spacing-sm);
+}
+
+.contactBlock:last-child {
+    margin-bottom: 0;
+}
+
+.contactName {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contactTitle {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.contactInfo {
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+}
+
+.contactInfo:last-child {
+    margin-bottom: 0;
+}
+
+.verified {
+    background-color: #D4F4DD;
+    color: #0F7B0F;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    margin-left: var(--spacing-sm);
+}
+
+/* Location Information */
+.locationBlock {
+    margin-bottom: var(--spacing-lg);
+}
+
+.locationBlock:last-child {
+    margin-bottom: 0;
+}
+
+.locationTitle {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.locationInfo {
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+}
+
+/* Tag Container */
+.tagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* Service Tags - Blue Outlined (for Step 6 display) */
+.serviceTagOutlined {
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    background-color: var(--white);
+    padding: 6px 12px;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-family);
+    font-size: var(--font-size-small);
+    font-weight: 500;
+}
+
+.noData {
+    color: var(--dark-gray);
+    font-style: italic;
+    font-size: var(--font-size-small);
+}
+
+/* Date Lists - Blue Text */
+.dateList {
+    color: var(--accent-blue);
+    line-height: 1.6;
+    font-size: var(--font-size-base);
+}
+
+/* Submit Section */
+.submitSection {
+    background-color: var(--white);
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.submitTitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--dark-gray2);
+    margin: 0 0 var(--spacing-lg) 0;
+}
+
+.certificationCheck {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.certificationCheck input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--accent-blue);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.certificationCheck label {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--text-dark);
+    cursor: pointer;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.disclaimer {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+}
+
+.exportButtons {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.exportButton {
+    background-color: var(--white);
+    color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
+    padding: 10px 24px;
+    border-radius: var(--radius-xl);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.exportButton:hover {
+    background-color: var(--accent-blue);
+    color: var(--white);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .reviewContainer {
+        padding: var(--spacing-lg);
+    }
+
+    .infoRow {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .label {
+        color: var(--dark-gray);
+        font-size: var(--font-size-small);
+    }
+
+    .exportButtons {
+        flex-direction: column;
+    }
+
+    .exportButton {
+        width: 100%;
+        text-align: center;
+    }
+
+    .tagContainer {
+        gap: var(--spacing-xs);
+    }
+
+    .sectionHeader {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .sectionContent {
+        padding: var(--spacing-md);
+    }
+
+    .mainTitle {
+        font-size: var(--font-size-xl);
+    }
+
+    .submitTitle {
+        font-size: var(--font-size-xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .step {
+        padding: var(--spacing-md) 0;
+    }
+
+    .reviewContainer {
+        padding: var(--spacing-md);
+        border-radius: var(--radius-md);
+    }
+
+    .section {
+        border-radius: var(--radius-md);
+    }
+
+    .sectionHeader {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .sectionTitle {
+        font-size: var(--font-size-small);
+        flex-basis: calc(100% - 60px);
+    }
+
+    .editButton {
+        font-size: var(--font-size-xsmall);
+    }
+
+    .certificationCheck {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .certificationCheck input[type="checkbox"] {
+        align-self: flex-start;
+    }
+
+    .submitSection {
+        padding: var(--spacing-md);
+    }
+
+    .serviceTagOutlined {
+        font-size: var(--font-size-xsmall);
+        padding: 4px 8px;
+    }
+}
