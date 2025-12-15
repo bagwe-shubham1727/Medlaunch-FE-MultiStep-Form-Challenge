@@ -1,0 +1,78 @@
+.step {
+    background-color: var(--light-gray);
+    min-height: 60vh;
+    padding: var(--spacing-lg) 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.section {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.sectionTitle {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--dark-gray2);
+    margin: 0 0 var(--spacing-lg) 0;
+}
+
+.formGroup {
+    margin-bottom: var(--spacing-lg);
+}
+
+.fieldLabel {
+    display: block;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.required {
+    color: var(--error-red);
+    margin-left: 2px;
+}
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.radioOption {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+}
+
+.radioInput {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent-blue);
+}
+
+.radioLabel {
+    font-size: var(--font-size-base);
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.radioLabel:hover {
+    color: var(--accent-blue);
+}
+
+.errorText {
+    color: var(--error-red);
+    font-size: var(--font-size-small);
+    margin-top: var(--spacing-xs);
+    display: block;
+}
