@@ -1,0 +1,95 @@
+.navigation {
+    max-width: 960px;
+    margin: var(--spacing-xl) auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-lg);
+}
+
+.leftButtons,
+.rightButtons {
+    display: flex;
+}
+
+.rightButtons {
+    gap: var(--spacing-xl);
+}
+
+.exitButton,
+.previousButton {
+    height: 48px;
+    background-color: var(--white);
+    color: var(--accent-blue);
+    border: 1.5px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 0 32px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.saveButton,
+.continueButton {
+    height: 48px;
+    background-color: var(--accent-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 0 32px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.exitButton:hover,
+.previousButton:hover {
+    background-color: var(--light-gray);
+}
+
+.saveButton:hover,
+.continueButton:hover {
+    background-color: #004494;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navigation {
+        padding: 0 var(--spacing-md);
+    }
+
+    .rightButtons {
+        gap: var(--spacing-md);
+    }
+
+    .exitButton,
+    .previousButton,
+    .saveButton,
+    .continueButton {
+        padding: 0 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .leftButtons,
+    .rightButtons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .rightButtons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .exitButton,
+    .previousButton,
+    .saveButton,
+    .continueButton {
+        width: 100%;
+    }
+}
