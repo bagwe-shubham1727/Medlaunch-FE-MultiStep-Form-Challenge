@@ -138,6 +138,9 @@
 
 /* Contact Information */
 .contactBlock {
+    background-color: #F5F5F5;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -167,12 +170,24 @@
 }
 
 .verified {
-    background-color: #D4F4DD;
-    color: #0F7B0F;
-    padding: 2px 8px;
-    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 100px;
     font-size: var(--font-size-small);
-    font-weight: 500;
+    color: #166534;
+    background-color: #DCFCE7;
+    margin-left: var(--spacing-sm);
+}
+
+.notVerified {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: var(--font-size-small);
+    color: var(--warning-orange);
+    background-color: #FBEFC4;
     margin-left: var(--spacing-sm);
 }
 
