@@ -122,6 +122,7 @@ const Step4 = () => {
                       className={styles.fileInput}
                       id="fileUpload"
                       multiple
+                      aria-label="Upload CSV or Excel file with site information"
                     />
                     <label htmlFor="fileUpload" className={styles.selectButton}>
                       Select file
@@ -131,6 +132,7 @@ const Step4 = () => {
                       type="button"
                       className={styles.templateLink}
                       onClick={() => alert("Download CSV Template")}
+                      aria-label="Download CSV template file"
                     >
                       Download CSV Template
                     </button>
@@ -144,13 +146,15 @@ const Step4 = () => {
                           <div className={styles.fileInfo}>
                             <DescriptionOutlinedIcon
                               className={styles.fileIcon}
+                              aria-hidden="true"
                             />
                             <span className={styles.fileName}>{file.name}</span>
-                            <span>•</span>
+                            <span aria-hidden="true">•</span>
                             <button
                               type="button"
                               className={styles.previewLink}
                               onClick={() => alert("File Preview")}
+                              aria-label={`Preview file ${file.name}`}
                             >
                               Preview
                             </button>
@@ -161,8 +165,9 @@ const Step4 = () => {
                               type="button"
                               className={styles.removeButton}
                               onClick={() => handleFileRemove(file.id)}
+                              aria-label={`Remove file ${file.name}`}
                             >
-                              <CancelIcon />
+                              <CancelIcon aria-hidden="true" />
                             </button>
                           </div>
                         </div>

@@ -171,7 +171,11 @@ const Step5 = () => {
           </p>
 
           {/* Service Tabs */}
-          <div className={styles.serviceTabs}>
+          <div
+            className={styles.serviceTabs}
+            role="tablist"
+            aria-label="Service categories"
+          >
             {[
               "All Services",
               "Clinical",
@@ -182,6 +186,8 @@ const Step5 = () => {
             ].map((tab) => (
               <button
                 key={tab}
+                role="tab"
+                aria-selected={activeTab === tab}
                 className={`${styles.tab} ${
                   activeTab === tab ? styles.active : ""
                 }`}
@@ -200,8 +206,9 @@ const Step5 = () => {
               className={styles.searchInput}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              aria-label="Search services"
             />
-            <SearchIcon className={styles.searchIcon} />
+            <SearchIcon className={styles.searchIcon} aria-hidden="true" />
           </div>
 
           {/* Service Categories */}
@@ -291,16 +298,25 @@ const Step5 = () => {
             </select>
 
             {(formData.selectedStandards || []).length > 0 && (
-              <div className={styles.tagContainer}>
+              <div
+                className={styles.tagContainer}
+                role="list"
+                aria-label="Selected standards"
+              >
                 {formData.selectedStandards.map((standard, index) => (
-                  <div key={index} className={styles.standardTag}>
+                  <div
+                    key={index}
+                    className={styles.standardTag}
+                    role="listitem"
+                  >
                     <span>{standard}</span>
                     <button
                       type="button"
                       className={styles.standardTagRemove}
                       onClick={() => handleStandardRemove(index)}
+                      aria-label={`Remove ${standard}`}
                     >
-                      <ClearIcon />
+                      <ClearIcon aria-hidden="true" />
                     </button>
                   </div>
                 ))}
@@ -363,9 +379,13 @@ const Step5 = () => {
             )}
 
             {(formData.thrombolyticDates || []).length > 0 && (
-              <div className={styles.tagContainer}>
+              <div
+                className={styles.tagContainer}
+                role="list"
+                aria-label="Selected thrombolytic dates"
+              >
                 {formData.thrombolyticDates.map((date, index) => (
-                  <div key={index} className={styles.tag}>
+                  <div key={index} className={styles.tag} role="listitem">
                     <span>{date}</span>
                     <button
                       type="button"
@@ -373,8 +393,9 @@ const Step5 = () => {
                       onClick={() =>
                         handleDateRemove("thrombolyticDates", index)
                       }
+                      aria-label={`Remove date ${date}`}
                     >
-                      <CancelIcon />
+                      <CancelIcon aria-hidden="true" />
                     </button>
                   </div>
                 ))}
@@ -406,9 +427,13 @@ const Step5 = () => {
             )}
 
             {(formData.thrombectomyDates || []).length > 0 && (
-              <div className={styles.tagContainer}>
+              <div
+                className={styles.tagContainer}
+                role="list"
+                aria-label="Selected thrombectomy dates"
+              >
                 {formData.thrombectomyDates.map((date, index) => (
-                  <div key={index} className={styles.tag}>
+                  <div key={index} className={styles.tag} role="listitem">
                     <span>{date}</span>
                     <button
                       type="button"
@@ -416,8 +441,9 @@ const Step5 = () => {
                       onClick={() =>
                         handleDateRemove("thrombectomyDates", index)
                       }
+                      aria-label={`Remove date ${date}`}
                     >
-                      <CancelIcon />
+                      <CancelIcon aria-hidden="true" />
                     </button>
                   </div>
                 ))}

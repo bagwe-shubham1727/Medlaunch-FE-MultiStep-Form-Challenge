@@ -443,8 +443,13 @@ const Step6 = () => {
             <div
               className={styles.sectionHeader}
               onClick={() => toggleSection("basicInfo")}
+              role="button"
+              tabIndex={0}
+              aria-expanded={!collapsedSections.basicInfo}
+              aria-controls="basicInfo-content"
+              onKeyDown={(e) => e.key === "Enter" && toggleSection("basicInfo")}
             >
-              <span className={styles.collapseIcon}>
+              <span className={styles.collapseIcon} aria-hidden="true">
                 {collapsedSections.basicInfo ? (
                   <KeyboardArrowDownIcon />
                 ) : (
@@ -458,6 +463,7 @@ const Step6 = () => {
                   e.stopPropagation();
                   goToStep(1);
                 }}
+                aria-label="Edit basic information"
               >
                 Edit
               </button>
@@ -518,8 +524,15 @@ const Step6 = () => {
             <div
               className={styles.sectionHeader}
               onClick={() => toggleSection("facilityDetails")}
+              role="button"
+              tabIndex={0}
+              aria-expanded={!collapsedSections.facilityDetails}
+              aria-controls="facilityDetails-content"
+              onKeyDown={(e) =>
+                e.key === "Enter" && toggleSection("facilityDetails")
+              }
             >
-              <span className={styles.collapseIcon}>
+              <span className={styles.collapseIcon} aria-hidden="true">
                 {collapsedSections.facilityDetails ? (
                   <KeyboardArrowDownIcon />
                 ) : (
@@ -533,12 +546,16 @@ const Step6 = () => {
                   e.stopPropagation();
                   goToStep(2);
                 }}
+                aria-label="Edit facility details"
               >
                 Edit
               </button>
             </div>
             {!collapsedSections.facilityDetails && (
-              <div className={styles.sectionContent}>
+              <div
+                className={styles.sectionContent}
+                id="facilityDetails-content"
+              >
                 <div className={styles.infoTable}>
                   <div className={styles.infoRow}>
                     <div className={styles.label}>Facility Type</div>
@@ -556,8 +573,15 @@ const Step6 = () => {
             <div
               className={styles.sectionHeader}
               onClick={() => toggleSection("leadershipContacts")}
+              role="button"
+              tabIndex={0}
+              aria-expanded={!collapsedSections.leadershipContacts}
+              aria-controls="leadershipContacts-content"
+              onKeyDown={(e) =>
+                e.key === "Enter" && toggleSection("leadershipContacts")
+              }
             >
-              <span className={styles.collapseIcon}>
+              <span className={styles.collapseIcon} aria-hidden="true">
                 {collapsedSections.leadershipContacts ? (
                   <KeyboardArrowDownIcon />
                 ) : (
@@ -571,12 +595,16 @@ const Step6 = () => {
                   e.stopPropagation();
                   goToStep(3);
                 }}
+                aria-label="Edit leadership contacts"
               >
                 Edit
               </button>
             </div>
             {!collapsedSections.leadershipContacts && (
-              <div className={styles.sectionContent}>
+              <div
+                className={styles.sectionContent}
+                id="leadershipContacts-content"
+              >
                 <div className={styles.infoTable}>
                   <div className={styles.infoRow}>
                     <div className={styles.label}>CEO</div>
@@ -657,8 +685,15 @@ const Step6 = () => {
             <div
               className={styles.sectionHeader}
               onClick={() => toggleSection("siteInformation")}
+              role="button"
+              tabIndex={0}
+              aria-expanded={!collapsedSections.siteInformation}
+              aria-controls="siteInformation-content"
+              onKeyDown={(e) =>
+                e.key === "Enter" && toggleSection("siteInformation")
+              }
             >
-              <span className={styles.collapseIcon}>
+              <span className={styles.collapseIcon} aria-hidden="true">
                 {collapsedSections.siteInformation ? (
                   <KeyboardArrowDownIcon />
                 ) : (
@@ -672,12 +707,16 @@ const Step6 = () => {
                   e.stopPropagation();
                   goToStep(4);
                 }}
+                aria-label="Edit site information"
               >
                 Edit
               </button>
             </div>
             {!collapsedSections.siteInformation && (
-              <div className={styles.sectionContent}>
+              <div
+                className={styles.sectionContent}
+                id="siteInformation-content"
+              >
                 <div className={styles.infoTable}>
                   <div className={styles.infoRow}>
                     <div className={styles.label}>Site Configuration</div>
@@ -719,8 +758,15 @@ const Step6 = () => {
             <div
               className={styles.sectionHeader}
               onClick={() => toggleSection("servicesCertifications")}
+              role="button"
+              tabIndex={0}
+              aria-expanded={!collapsedSections.servicesCertifications}
+              aria-controls="servicesCertifications-content"
+              onKeyDown={(e) =>
+                e.key === "Enter" && toggleSection("servicesCertifications")
+              }
             >
-              <span className={styles.collapseIcon}>
+              <span className={styles.collapseIcon} aria-hidden="true">
                 {collapsedSections.servicesCertifications ? (
                   <KeyboardArrowDownIcon />
                 ) : (
@@ -734,12 +780,16 @@ const Step6 = () => {
                   e.stopPropagation();
                   goToStep(5);
                 }}
+                aria-label="Edit services and certifications"
               >
                 Edit
               </button>
             </div>
             {!collapsedSections.servicesCertifications && (
-              <div className={styles.sectionContent}>
+              <div
+                className={styles.sectionContent}
+                id="servicesCertifications-content"
+              >
                 <div className={styles.infoTable}>
                   <div className={styles.infoRow}>
                     <div className={styles.label}>Services Provided</div>
@@ -864,10 +914,15 @@ const Step6 = () => {
               <button
                 className={styles.exportButton}
                 onClick={handleDownloadPDF}
+                aria-label="Download application as PDF file"
               >
                 Download as PDF
               </button>
-              <button className={styles.exportButton} onClick={handleExportCSV}>
+              <button
+                className={styles.exportButton}
+                onClick={handleExportCSV}
+                aria-label="Export application data to CSV file"
+              >
                 Export to CSV
               </button>
             </div>

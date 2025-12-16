@@ -23,17 +23,30 @@ const ProgressBar = () => {
   ];
 
   return (
-    <div className={styles.progressBar}>
+    <div
+      className={styles.progressBar}
+      role="navigation"
+      aria-label="Form progress"
+    >
       <div className={styles.titleSection}>
         <div className={styles.container}>
           <h2 className={styles.title}>{stepTitles[currentStep - 1]}</h2>
-          <span className={styles.stepText}>Step {currentStep} of 6</span>
+          <span className={styles.stepText} aria-live="polite">
+            Step {currentStep} of 6
+          </span>
         </div>
       </div>
 
       <div className={styles.progressSection}>
         <div className={styles.container}>
-          <div className={styles.progressLines}>
+          <div
+            className={styles.progressLines}
+            role="progressbar"
+            aria-valuenow={currentStep}
+            aria-valuemin={1}
+            aria-valuemax={6}
+            aria-label={`Form progress: Step ${currentStep} of 6`}
+          >
             {stepLabels.map((label, index) => {
               const stepNumber = index + 1;
               const isCompleted = stepNumber < currentStep;

@@ -315,14 +315,21 @@ const Step1 = () => {
 
             <div className={`${styles.formGroup} ${styles.emailFormGroup}`}>
               <div className={styles.emailLabelRow}>
-                <label className={styles.label}>
+                <label className={styles.label} htmlFor="email">
                   Email <span className={styles.required}>*</span>
                 </label>
-                <CachedIcon
-                  className={styles.refreshIcon}
+                <button
+                  type="button"
+                  className={styles.refreshIconButton}
                   onClick={handleResetEmail}
+                  aria-label="Reset email field"
                   title="Reset email"
-                />
+                >
+                  <CachedIcon
+                    className={styles.refreshIcon}
+                    aria-hidden="true"
+                  />
+                </button>
               </div>
               <input
                 {...register("email", {
@@ -339,12 +346,21 @@ const Step1 = () => {
                   },
                 })}
                 type="email"
+                id="email"
+                aria-describedby={errors.email ? "email-error" : undefined}
+                aria-invalid={errors.email ? "true" : "false"}
                 className={`${styles.input} ${
                   errors.email ? styles.error : ""
                 }`}
               />
               {errors.email && (
-                <span className={styles.errorText}>{errors.email.message}</span>
+                <span
+                  id="email-error"
+                  className={styles.errorText}
+                  role="alert"
+                >
+                  {errors.email.message}
+                </span>
               )}
             </div>
 

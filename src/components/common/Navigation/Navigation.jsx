@@ -10,25 +10,36 @@ const Navigation = ({
   disabled = false,
 }) => {
   return (
-    <div className={styles.navigation}>
+    <nav className={styles.navigation} aria-label="Form navigation">
       <div className={styles.leftButtons}>
         {showPrevious ? (
           <button
             type="button"
             className={styles.previousButton}
             onClick={onPrevious}
+            aria-label="Go to previous step"
           >
             Previous
           </button>
         ) : (
-          <button type="button" className={styles.exitButton} onClick={onExit}>
+          <button
+            type="button"
+            className={styles.exitButton}
+            onClick={onExit}
+            aria-label="Exit form"
+          >
             Exit
           </button>
         )}
       </div>
 
       <div className={styles.rightButtons}>
-        <button type="button" className={styles.saveButton} onClick={onSave}>
+        <button
+          type="button"
+          className={styles.saveButton}
+          onClick={onSave}
+          aria-label="Save current progress"
+        >
           Save
         </button>
         <button
@@ -38,11 +49,17 @@ const Navigation = ({
           }`}
           onClick={onContinue}
           disabled={disabled}
+          aria-label={
+            buttonText === "Submit Application"
+              ? "Submit application"
+              : "Continue to next step"
+          }
+          aria-disabled={disabled}
         >
           {buttonText}
         </button>
       </div>
-    </div>
+    </nav>
   );
 };
 
