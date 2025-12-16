@@ -25,11 +25,6 @@ const Step6 = () => {
   };
 
   const handleSubmit = () => {
-    if (!certificationChecked) {
-      alert("Please certify the information before submitting.");
-      return;
-    }
-
     // Log the complete form data to console as required
     console.log("=== FORM SUBMISSION PAYLOAD ===");
     console.log(JSON.stringify(formData, null, 2));
@@ -885,6 +880,7 @@ const Step6 = () => {
           onPrevious={previousStep}
           onSave={() => alert("Progress saved!")}
           onContinue={handleSubmit}
+          disabled={!certificationChecked}
         />
       </div>
     </div>

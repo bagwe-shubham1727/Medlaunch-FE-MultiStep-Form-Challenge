@@ -7,6 +7,7 @@ const Navigation = ({
   onSave,
   onContinue,
   onExit,
+  disabled = false,
 }) => {
   return (
     <div className={styles.navigation}>
@@ -32,8 +33,11 @@ const Navigation = ({
         </button>
         <button
           type="button"
-          className={styles.continueButton}
+          className={`${styles.continueButton} ${
+            disabled ? styles.disabled : ""
+          }`}
           onClick={onContinue}
+          disabled={disabled}
         >
           {buttonText}
         </button>
