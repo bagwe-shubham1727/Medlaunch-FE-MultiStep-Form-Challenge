@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormContext } from "/src/contexts/FormContext.jsx";
+import { formatDateToUS } from "/src/constants";
 import Navigation from "../../common/Navigation/Navigation";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -194,26 +195,26 @@ const Step6 = () => {
     csvData.push([
       "Services & Certifications",
       "Date of Application",
-      formData.applicationDate || "Not Provided",
+      formatDateToUS(formData.applicationDate) || "Not Provided",
     ]);
     csvData.push([
       "Services & Certifications",
       "Stroke Certification Expiry",
-      formData.strokeCertificationExpiry || "Not Provided",
+      formatDateToUS(formData.strokeCertificationExpiry) || "Not Provided",
     ]);
 
     if (formData.thrombolyticDates?.length > 0) {
       csvData.push([
         "Services & Certifications",
         "Thrombolytic Dates",
-        formData.thrombolyticDates.join("; "),
+        formData.thrombolyticDates.map(formatDateToUS).join("; "),
       ]);
     }
     if (formData.thrombectomyDates?.length > 0) {
       csvData.push([
         "Services & Certifications",
         "Thrombectomy Dates",
-        formData.thrombectomyDates.join("; "),
+        formData.thrombectomyDates.map(formatDateToUS).join("; "),
       ]);
     }
 
@@ -288,7 +289,11 @@ const Step6 = () => {
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
-    doc.text(`Generated: ${new Date().toLocaleDateString()}`, margin, yPos);
+    doc.text(
+      `Generated: ${new Date().toLocaleDateString("en-US")}`,
+      margin,
+      yPos
+    );
     doc.setTextColor(0, 0, 0);
     yPos += 15;
 
@@ -403,25 +408,31 @@ const Step6 = () => {
       margin
     );
     addText(
-      `Date of Application: ${formData.applicationDate || "Not Provided"}`,
+      `Date of Application: ${
+        formatDateToUS(formData.applicationDate) || "Not Provided"
+      }`,
       margin
     );
     addText(
       `Stroke Certification Expiry: ${
-        formData.strokeCertificationExpiry || "Not Provided"
+        formatDateToUS(formData.strokeCertificationExpiry) || "Not Provided"
       }`,
       margin
     );
 
     if (formData.thrombolyticDates?.length > 0) {
       addText(
-        `Thrombolytic Dates: ${formData.thrombolyticDates.join(", ")}`,
+        `Thrombolytic Dates: ${formData.thrombolyticDates
+          .map(formatDateToUS)
+          .join(", ")}`,
         margin
       );
     }
     if (formData.thrombectomyDates?.length > 0) {
       addText(
-        `Thrombectomy Dates: ${formData.thrombectomyDates.join(", ")}`,
+        `Thrombectomy Dates: ${formData.thrombectomyDates
+          .map(formatDateToUS)
+          .join(", ")}`,
         margin
       );
     }
@@ -845,7 +856,8 @@ const Step6 = () => {
                   <div className={styles.infoRow}>
                     <div className={styles.label}>Date of Application</div>
                     <div className={styles.value}>
-                      {formData.applicationDate || "Not Provided"}
+                      {formatDateToUS(formData.applicationDate) ||
+                        "Not Provided"}
                     </div>
                   </div>
                   <div className={styles.infoRow}>
@@ -853,7 +865,8 @@ const Step6 = () => {
                       Expiration Date of Current Stroke Certification
                     </div>
                     <div className={styles.value}>
-                      {formData.strokeCertificationExpiry || "Not Provided"}
+                      {formatDateToUS(formData.strokeCertificationExpiry) ||
+                        "Not Provided"}
                     </div>
                   </div>
                   {formData.thrombolyticDates &&
@@ -864,7 +877,9 @@ const Step6 = () => {
                         </div>
                         <div className={styles.value}>
                           <div className={styles.dateList}>
-                            {formData.thrombolyticDates.join(", ")}
+                            {formData.thrombolyticDates
+                              .map(formatDateToUS)
+                              .join(", ")}
                           </div>
                         </div>
                       </div>
@@ -877,7 +892,9 @@ const Step6 = () => {
                         </div>
                         <div className={styles.value}>
                           <div className={styles.dateList}>
-                            {formData.thrombectomyDates.join(", ")}
+                            {formData.thrombectomyDates
+                              .map(formatDateToUS)
+                              .join(", ")}
                           </div>
                         </div>
                       </div>

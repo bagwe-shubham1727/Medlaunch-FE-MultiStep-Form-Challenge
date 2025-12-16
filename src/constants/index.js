@@ -122,3 +122,36 @@ export const DATE_LIMITS = {
     THROMBOLYTIC_MAX: 25,
     THROMBECTOMY_MAX: 15,
 };
+
+// Date formatting utilities
+/**
+ * Format a date string from YYYY-MM-DD to MM/DD/YYYY
+ * @param {string} dateString - Date in YYYY-MM-DD format
+ * @returns {string} Date in MM/DD/YYYY format
+ */
+export const formatDateToUS = (dateString) => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    return `${month}/${day}/${year}`;
+};
+
+/**
+ * Format a Date object to MM/DD/YYYY
+ * @param {Date} date - Date object
+ * @returns {string} Date in MM/DD/YYYY format
+ */
+export const formatDateObjectToUS = (date) => {
+    if (!date || !(date instanceof Date)) return "";
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+};
+
+/**
+ * Get current date in MM/DD/YYYY format
+ * @returns {string} Current date in MM/DD/YYYY format
+ */
+export const getCurrentDateUS = () => {
+    return formatDateObjectToUS(new Date());
+};

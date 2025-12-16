@@ -9,6 +9,7 @@ import {
   SERVICE_TABS,
   STANDARDS_OPTIONS,
   DATE_LIMITS,
+  formatDateToUS,
 } from "/src/constants";
 import styles from "./Step5.module.css";
 
@@ -367,14 +368,14 @@ const Step5 = () => {
               >
                 {formData.thrombolyticDates.map((date, index) => (
                   <div key={index} className={styles.tag} role="listitem">
-                    <span>{date}</span>
+                    <span>{formatDateToUS(date)}</span>
                     <button
                       type="button"
                       className={styles.tagRemove}
                       onClick={() =>
                         handleDateRemove("thrombolyticDates", index)
                       }
-                      aria-label={`Remove date ${date}`}
+                      aria-label={`Remove date ${formatDateToUS(date)}`}
                     >
                       <CancelIcon aria-hidden="true" />
                     </button>
@@ -415,14 +416,14 @@ const Step5 = () => {
               >
                 {formData.thrombectomyDates.map((date, index) => (
                   <div key={index} className={styles.tag} role="listitem">
-                    <span>{date}</span>
+                    <span>{formatDateToUS(date)}</span>
                     <button
                       type="button"
                       className={styles.tagRemove}
                       onClick={() =>
                         handleDateRemove("thrombectomyDates", index)
                       }
-                      aria-label={`Remove date ${date}`}
+                      aria-label={`Remove date ${formatDateToUS(date)}`}
                     >
                       <CancelIcon aria-hidden="true" />
                     </button>

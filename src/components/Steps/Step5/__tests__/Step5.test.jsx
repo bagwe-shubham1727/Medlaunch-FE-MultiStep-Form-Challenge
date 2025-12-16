@@ -3,6 +3,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Step5 from "../Step5";
 import { FormProvider } from "/src/contexts/FormContext";
+import { formatDateToUS } from "/src/constants";
 
 // Helper to render with context
 const renderWithContext = () => {
@@ -260,12 +261,13 @@ describe("Step5 Component", () => {
         const pastDate = new Date();
         pastDate.setDate(pastDate.getDate() - 1);
         const pastDateStr = pastDate.toISOString().split("T")[0];
+        const formattedDate = formatDateToUS(pastDateStr);
 
         fireEvent.change(dateInputs[2], { target: { value: pastDateStr } });
 
-        // The date should be added and displayed
+        // The date should be added and displayed in MM/DD/YYYY format
         await waitFor(() => {
-          expect(screen.getByText(pastDateStr)).toBeInTheDocument();
+          expect(screen.getByText(formattedDate)).toBeInTheDocument();
         });
       }
     });
@@ -435,11 +437,12 @@ describe("Step5 Component", () => {
         const pastDate = new Date();
         pastDate.setDate(pastDate.getDate() - 1);
         const pastDateStr = pastDate.toISOString().split("T")[0];
+        const formattedDate = formatDateToUS(pastDateStr);
 
         fireEvent.change(dateInputs[3], { target: { value: pastDateStr } });
 
         await waitFor(() => {
-          expect(screen.getByText(pastDateStr)).toBeInTheDocument();
+          expect(screen.getByText(formattedDate)).toBeInTheDocument();
         });
       }
     });
