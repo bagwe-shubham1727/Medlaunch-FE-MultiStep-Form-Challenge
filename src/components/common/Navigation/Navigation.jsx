@@ -6,6 +6,7 @@ const Navigation = ({
   onPrevious,
   onSave,
   onContinue,
+  onExit,
 }) => {
   return (
     <div className={styles.navigation}>
@@ -19,7 +20,7 @@ const Navigation = ({
             Previous
           </button>
         ) : (
-          <button type="button" className={styles.exitButton}>
+          <button type="button" className={styles.exitButton} onClick={onExit}>
             Exit
           </button>
         )}

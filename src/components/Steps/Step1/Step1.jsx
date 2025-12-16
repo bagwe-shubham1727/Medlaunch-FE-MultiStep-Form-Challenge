@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useFormContext } from "/src/contexts/FormContext";
 import Navigation from "../../common/Navigation/Navigation.jsx";
 import styles from "./Step1.module.css";
+import CachedIcon from "@mui/icons-material/Cached";
 
 const Step1 = () => {
-  const { formData, updateFormData, nextStep } = useFormContext();
+  const { formData, updateFormData, nextStep, resetForm } = useFormContext();
+  const [emailVerified, setEmailVerified] = useState(
+    formData.emailVerified || false
+  );
 
   const {
     register,
@@ -12,15 +17,20 @@ const Step1 = () => {
     formState: { errors },
     setValue,
     watch,
+    reset,
   } = useForm({
     defaultValues: formData,
+    mode: "onChange",
   });
 
   const sameAsLegalEntity = watch("sameAsLegalEntity");
   const legalEntityName = watch("legalEntityName");
+  const email = watch("email");
+
+  const isValidEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const onSubmit = (data) => {
-    updateFormData(data);
+    updateFormData({ ...data, emailVerified });
     nextStep();
   };
 
@@ -42,6 +52,48 @@ const Step1 = () => {
     alert("Progress saved!");
   };
 
+  const handleVerifyEmail = () => {
+    setEmailVerified(true);
+    updateFormData({ emailVerified: true });
+  };
+
+  const handleResetEmail = () => {
+    setValue("email", "");
+    setEmailVerified(false);
+    updateFormData({ email: "", emailVerified: false });
+  };
+
+  const handleLegalEntityChange = (e) => {
+    const value = e.target.value;
+    if (sameAsLegalEntity) {
+      setValue("sameAsLegalEntity", false);
+      setValue("doingBusinessAs", "");
+      updateFormData({ sameAsLegalEntity: false, doingBusinessAs: "" });
+    }
+  };
+
+  const handleExit = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to exit? All form data will be lost."
+      )
+    ) {
+      resetForm();
+      reset({
+        legalEntityName: "",
+        doingBusinessAs: "",
+        sameAsLegalEntity: false,
+        firstName: "",
+        lastName: "",
+        title: "",
+        workPhone: "",
+        cellPhone: "",
+        email: "",
+      });
+      setEmailVerified(false);
+    }
+  };
+
   return (
     <div className={styles.step}>
       <div className={styles.container}>
@@ -58,6 +110,7 @@ const Step1 = () => {
               <input
                 {...register("legalEntityName", {
                   required: "Legal Entity Name is required",
+                  onChange: handleLegalEntityChange,
                 })}
                 type="text"
                 className={`${styles.input} ${
@@ -103,7 +156,7 @@ const Step1 = () => {
               <label htmlFor="sameAsLegal">Same as Legal Entity Name</label>
             </div>
 
-            <div className={styles.divider} />
+            <div className={styles.sectionGap}></div>
 
             <h3 className={styles.sectionTitle}>Primary Contact Information</h3>
             <p className={styles.sectionSubtitle}>
@@ -119,6 +172,10 @@ const Step1 = () => {
                 <input
                   {...register("firstName", {
                     required: "First Name is required",
+                    pattern: {
+                      value: /^[A-Za-z\s]+$/,
+                      message: "First Name can only contain letters",
+                    },
                   })}
                   type="text"
                   className={`${styles.input} ${
@@ -139,6 +196,10 @@ const Step1 = () => {
                 <input
                   {...register("lastName", {
                     required: "Last Name is required",
+                    pattern: {
+                      value: /^[A-Za-z\s]+$/,
+                      message: "Last Name can only contain letters",
+                    },
                   })}
                   type="text"
                   className={`${styles.input} ${
@@ -158,7 +219,13 @@ const Step1 = () => {
                 Title <span className={styles.required}>*</span>
               </label>
               <input
-                {...register("title", { required: "Title is required" })}
+                {...register("title", {
+                  required: "Title is required",
+                  pattern: {
+                    value: /^[A-Za-z\s]+$/,
+                    message: "Title can only contain letters",
+                  },
+                })}
                 type="text"
                 className={`${styles.input} ${
                   errors.title ? styles.error : ""
@@ -178,11 +245,26 @@ const Step1 = () => {
                   {...register("workPhone", {
                     required: "Work Phone is required",
                     pattern: {
-                      value: /^[\+]?[1-9]?[\d\s\-\(\)]{10,}$/,
-                      message: "Please enter a valid phone number",
+                      value: /^[0-9]{10}$/,
+                      message: "Phone number must be exactly 10 digits",
                     },
                   })}
                   type="tel"
+                  maxLength={10}
+                  onKeyDown={(e) => {
+                    if (
+                      !/[0-9]/.test(e.key) &&
+                      ![
+                        "Backspace",
+                        "Delete",
+                        "Tab",
+                        "ArrowLeft",
+                        "ArrowRight",
+                      ].includes(e.key)
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
                   className={`${styles.input} ${
                     errors.workPhone ? styles.error : ""
                   }`}
@@ -197,23 +279,63 @@ const Step1 = () => {
               <div className={styles.formGroup}>
                 <label className={styles.label}>Cell Phone</label>
                 <input
-                  {...register("cellPhone")}
+                  {...register("cellPhone", {
+                    pattern: {
+                      value: /^[0-9]{10}$/,
+                      message: "Phone number must be exactly 10 digits",
+                    },
+                  })}
                   type="tel"
-                  className={styles.input}
+                  maxLength={10}
+                  onKeyDown={(e) => {
+                    if (
+                      !/[0-9]/.test(e.key) &&
+                      ![
+                        "Backspace",
+                        "Delete",
+                        "Tab",
+                        "ArrowLeft",
+                        "ArrowRight",
+                      ].includes(e.key)
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                  className={`${styles.input} ${
+                    errors.cellPhone ? styles.error : ""
+                  }`}
                 />
+                {errors.cellPhone && (
+                  <span className={styles.errorText}>
+                    {errors.cellPhone.message}
+                  </span>
+                )}
               </div>
             </div>
 
-            <div className={styles.formGroup}>
-              <label className={styles.label}>
-                Email <span className={styles.required}>*</span>
-              </label>
+            <div className={`${styles.formGroup} ${styles.emailFormGroup}`}>
+              <div className={styles.emailLabelRow}>
+                <label className={styles.label}>
+                  Email <span className={styles.required}>*</span>
+                </label>
+                <CachedIcon
+                  className={styles.refreshIcon}
+                  onClick={handleResetEmail}
+                  title="Reset email"
+                />
+              </div>
               <input
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: "Please enter a valid email address",
+                  },
+                  onChange: () => {
+                    if (emailVerified) {
+                      setEmailVerified(false);
+                      updateFormData({ emailVerified: false });
+                    }
                   },
                 })}
                 type="email"
@@ -228,12 +350,25 @@ const Step1 = () => {
 
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
-                <button type="button" className={styles.verifyButton}>
-                  Send Verification Email
+                <button
+                  type="button"
+                  className={styles.verifyButton}
+                  onClick={handleVerifyEmail}
+                  disabled={emailVerified || !isValidEmail}
+                >
+                  {emailVerified
+                    ? "Verification Sent"
+                    : "Send Verification Email"}
                 </button>
               </div>
               <div className={styles.formGroup}>
-                <span className={styles.notVerified}>Not verified</span>
+                <span
+                  className={
+                    emailVerified ? styles.verified : styles.notVerified
+                  }
+                >
+                  {emailVerified ? "Verified" : "Not verified"}
+                </span>
               </div>
             </div>
           </section>
@@ -243,6 +378,7 @@ const Step1 = () => {
             buttonText="Continue"
             onSave={handleSave}
             onContinue={handleSubmit(onSubmit)}
+            onExit={handleExit}
           />
         </form>
       </div>

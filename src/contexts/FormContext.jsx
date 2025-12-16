@@ -81,6 +81,11 @@ export function FormProvider({ children }) {
     }
   };
 
+  const resetForm = () => {
+    setFormData(initialFormData);
+    setCurrentStep(1);
+  };
+
   // Determines which Step 2 variant to show
   const showAlternateStep2 = () => {
     return formData.sameAsLegalEntity === true;
@@ -95,6 +100,7 @@ export function FormProvider({ children }) {
         nextStep,
         previousStep,
         goToStep,
+        resetForm,
         showAlternateStep2,
       }}
     >

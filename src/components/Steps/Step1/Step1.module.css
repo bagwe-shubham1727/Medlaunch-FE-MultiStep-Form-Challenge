@@ -30,14 +30,17 @@
     margin-bottom: var(--spacing-lg);
 }
 
-.divider {
-    height: 1px;
-    background-color: var(--border-gray);
-    margin: var(--spacing-xl) 0;
+.sectionGap {
+    height: var(--spacing-sm);
+    margin: var(--spacing-md);
 }
 
 .formGroup {
     margin-bottom: var(--spacing-lg);
+}
+
+.emailFormGroup {
+    margin-bottom: 16px;
 }
 
 .formRow {
@@ -142,6 +145,40 @@
     color: var(--warning-orange);
     background-color: #FBEFC4;
     margin-top: var(--spacing-md);
+    float: right;
+}
+
+.verified {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: var(--font-size-small);
+    color: #166534;
+    background-color: #DCFCE7;
+    margin-top: var(--spacing-md);
+    float: right;
+}
+
+.emailLabelRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.emailLabelRow .label {
+    margin-bottom: 0;
+}
+
+.refreshIcon {
+    color: var(--dark-gray);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.refreshIcon:hover {
+    color: var(--accent-blue);
 }
 
 @media (max-width: 768px) {
