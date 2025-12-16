@@ -30,14 +30,13 @@
 .locationOptions {
     display: flex;
     gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
     padding-top: var(--spacing-md);
     padding-bottom: var(--spacing-sm);
 }
 
 .locationCard {
     flex: 1;
-    border: 2px solid var(--border-gray);
+    border: 1.5px solid var(--border-gray);
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     cursor: pointer;
@@ -51,7 +50,7 @@
 }
 
 .locationCard.selected {
-    border-color: var(--accent-blue);
+    border-color: var(--border-gray);
     background-color: #E2F0F8;
 }
 
@@ -71,15 +70,26 @@
     line-height: 1.4;
 }
 
+/* Error text */
+.errorText {
+    color: var(--error-red);
+    font-size: var(--font-size-base);
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+/* Section gap divider */
+.sectionGap {
+    height: 64px;
+}
+
 /* Upload Section */
 .uploadSection {
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-xl);
-    border-top: 1px solid var(--border-gray);
+    margin-top: 0;
 }
 
 .uploadCard {
-    border: 2px solid var(--accent-blue);
+    border: 1.5px solid var(--accent-blue);
     border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
@@ -98,7 +108,15 @@
     font-family: var(--font-family);
     font-size: var(--font-size-large);
     color: var(--dark-gray);
-    margin: 0 0 var(--spacing-lg) 0;
+    margin: 0;
+}
+
+/* Drop Zone Card */
+.dropZoneCard {
+    border: 1.5px solid var(--border-gray);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    background-color: #E2F0F8;
 }
 
 /* Drop Zone */
@@ -109,7 +127,7 @@
     text-align: center;
     background-color: var(--white);
     position: relative;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 0;
     transition: background-color 0.2s ease;
 }
 
@@ -199,7 +217,6 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-md);
-    border: 1px solid var(--accent-blue);
     border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-sm);
     background-color: var(--white);
@@ -224,7 +241,7 @@
     color: var(--text-dark);
     margin-left: var(--spacing-sm);
     margin-right: var(--spacing-sm);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .previewLink {
