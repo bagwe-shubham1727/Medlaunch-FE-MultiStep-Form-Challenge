@@ -104,8 +104,7 @@
 .serviceGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+    gap: 16px;
 }
 
 .serviceCategory {
@@ -212,6 +211,76 @@
     color: var(--dark-gray);
 }
 
+/* Other Service Section */
+.otherServiceSection {
+    border: 1px solid var(--border-gray);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    background-color: var(--white);
+}
+
+.otherServiceInput {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.otherServiceInput .input {
+    flex: 1;
+}
+
+.removeButton {
+    background: none;
+    border: none;
+    color: var(--error-red);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.removeButton:hover {
+    opacity: 0.8;
+}
+
+/* Add Service Button */
+.addServiceButton {
+    background: none;
+    border: 2px solid var(--accent-blue);
+    color: var(--accent-blue);
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 32px;
+    transition: all 0.2s ease;
+}
+
+.addServiceButton:hover {
+    background-color: var(--accent-blue);
+    color: var(--white);
+}
+
+.removeOtherServiceButton {
+    background: none;
+    border: none;
+    color: var(--error-red);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.removeOtherServiceButton:hover {
+    opacity: 0.8;
+}
+
 /* Add Service Button */
 .addServiceButton {
     background: none;
@@ -310,6 +379,18 @@
     outline: none;
     border-color: var(--accent-blue);
     box-shadow: 0 0 0 3px rgba(0, 86, 163, 0.1);
+}
+
+.inputError {
+    border-color: var(--error-red);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.errorText {
+    color: var(--error-red);
+    font-size: var(--font-size-small);
+    margin-top: var(--spacing-xs);
+    display: block;
 }
 
 .select {

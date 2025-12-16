@@ -10,6 +10,28 @@ const Step5 = () => {
   const { formData, updateFormData, nextStep, previousStep } = useFormContext();
   const [activeTab, setActiveTab] = useState("All Services");
   const [searchTerm, setSearchTerm] = useState("");
+  const [showOtherService, setShowOtherService] = useState(false);
+  const [strokeCertError, setStrokeCertError] = useState("");
+
+  // Get tomorrow's date as minimum for stroke certification expiry
+  const getTomorrowDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split("T")[0];
+  };
+
+  const handleStrokeCertificationChange = (value) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = new Date(value);
+
+    if (selectedDate <= today) {
+      setStrokeCertError("Expiration date must be greater than today's date");
+    } else {
+      setStrokeCertError("");
+    }
+    updateFormData({ strokeCertificationExpiry: value });
+  };
 
   const serviceCategories = {
     "Emergency & Critical Care": [
@@ -258,6 +280,43 @@ const Step5 = () => {
             ))}
           </div>
 
+          {/* Add Other Service */}
+          <button
+            type="button"
+            className={styles.addServiceButton}
+            onClick={() => setShowOtherService(true)}
+          >
+            + Add Other Service
+          </button>
+
+          {/* Other Service Input */}
+          {showOtherService && (
+            <div className={styles.otherServiceSection}>
+              <h4 className={styles.categoryTitle}>Other Service</h4>
+              <div className={styles.otherServiceInput}>
+                <input
+                  type="text"
+                  placeholder="Specify other service"
+                  className={styles.input}
+                  value={formData.otherServiceValue || ""}
+                  onChange={(e) =>
+                    updateFormData({ otherServiceValue: e.target.value })
+                  }
+                />
+                <button
+                  type="button"
+                  className={styles.removeButton}
+                  onClick={() => {
+                    setShowOtherService(false);
+                    updateFormData({ otherServiceValue: "" });
+                  }}
+                >
+                  ❌
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Standards Dropdown */}
           <div className={styles.formGroup}>
             <label className={styles.label}>Standards to Apply</label>
@@ -269,10 +328,10 @@ const Step5 = () => {
               }}
             >
               <option value="">Select Standard(s)</option>
-              <option value="Standard 1">Standard 1</option>
-              <option value="Standard 2">Standard 2</option>
-              <option value="Standard 3">Standard 3</option>
-              <option value="Standard 4">Standard 4</option>
+              <option value="Action1">Action1</option>
+              <option value="Action2">Action2</option>
+              <option value="Action3">Action3</option>
+              <option value="Action4">Action4</option>
             </select>
 
             {(formData.selectedStandards || []).length > 0 && (
@@ -301,12 +360,18 @@ const Step5 = () => {
               </label>
               <input
                 type="date"
-                className={styles.input}
+                className={`${styles.input} ${
+                  strokeCertError ? styles.inputError : ""
+                }`}
+                min={getTomorrowDate()}
                 value={formData.strokeCertificationExpiry || ""}
                 onChange={(e) =>
-                  updateFormData({ strokeCertificationExpiry: e.target.value })
+                  handleStrokeCertificationChange(e.target.value)
                 }
               />
+              {strokeCertError && (
+                <span className={styles.errorText}>{strokeCertError}</span>
+              )}
             </div>
             <div className={styles.formGroup}>
               <label className={styles.label}>Date of Application</label>
