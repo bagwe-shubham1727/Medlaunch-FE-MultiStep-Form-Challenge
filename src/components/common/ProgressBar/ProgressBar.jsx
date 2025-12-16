@@ -1,26 +1,9 @@
 import { useFormContext } from "/src/contexts/FormContext";
+import { FORM_STEPS } from "/src/constants";
 import styles from "./ProgressBar.module.css";
 
 const ProgressBar = () => {
   const { currentStep } = useFormContext();
-
-  const stepTitles = [
-    "New DNV Quote Request",
-    "Facility Details",
-    "Leadership Contacts",
-    "Site Information",
-    "Services & Certifications",
-    "Review & Submit",
-  ];
-
-  const stepLabels = [
-    "DNV Quote Request",
-    "Facility Details",
-    "Leadership Contacts",
-    "Site Information",
-    "Services & Certifications",
-    "Review & Submit",
-  ];
 
   return (
     <div
@@ -30,9 +13,9 @@ const ProgressBar = () => {
     >
       <div className={styles.titleSection}>
         <div className={styles.container}>
-          <h2 className={styles.title}>{stepTitles[currentStep - 1]}</h2>
+          <h2 className={styles.title}>{FORM_STEPS[currentStep - 1].title}</h2>
           <span className={styles.stepText} aria-live="polite">
-            Step {currentStep} of 6
+            Step {currentStep} of {FORM_STEPS.length}
           </span>
         </div>
       </div>
@@ -44,10 +27,10 @@ const ProgressBar = () => {
             role="progressbar"
             aria-valuenow={currentStep}
             aria-valuemin={1}
-            aria-valuemax={6}
-            aria-label={`Form progress: Step ${currentStep} of 6`}
+            aria-valuemax={FORM_STEPS.length}
+            aria-label={`Form progress: Step ${currentStep} of ${FORM_STEPS.length}`}
           >
-            {stepLabels.map((label, index) => {
+            {FORM_STEPS.map((step, index) => {
               const stepNumber = index + 1;
               const isCompleted = stepNumber < currentStep;
               const isCurrent = stepNumber === currentStep;
@@ -66,7 +49,7 @@ const ProgressBar = () => {
                     />
                     {isCurrent && <div className={styles.progressLineActive} />}
                   </div>
-                  <span className={styles.stepLabel}>{label}</span>
+                  <span className={styles.stepLabel}>{step.label}</span>
                 </div>
               );
             })}

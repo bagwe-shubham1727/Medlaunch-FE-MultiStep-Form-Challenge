@@ -7,7 +7,6 @@ import styles from "./MultiStepForm.module.css";
 import Step2 from "../Steps/Step2/Step2";
 import Step3 from "../Steps/Step3/Step3";
 import Step4 from "../Steps/Step4/Step4";
-import { Step } from "@mui/material";
 import Step5 from "../Steps/Step5/Step5";
 import Step6 from "../Steps/Step6/Step6";
 

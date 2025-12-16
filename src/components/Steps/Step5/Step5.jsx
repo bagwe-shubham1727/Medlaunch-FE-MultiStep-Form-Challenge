@@ -4,6 +4,12 @@ import Navigation from "../../common/Navigation/Navigation";
 import CancelIcon from "@mui/icons-material/Cancel";
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
+import {
+  SERVICE_CATEGORIES,
+  SERVICE_TABS,
+  STANDARDS_OPTIONS,
+  DATE_LIMITS,
+} from "/src/constants";
 import styles from "./Step5.module.css";
 
 const Step5 = () => {
@@ -38,20 +44,6 @@ const Step5 = () => {
       setStrokeCertError("");
     }
     updateFormData({ strokeCertificationExpiry: value });
-  };
-
-  const serviceCategories = {
-    "Emergency & Critical Care": [
-      "Emergency Department",
-      "Neonatal Intensive Care Services",
-      "Pediatric Intensive Care Services",
-    ],
-    "Cardiac Services": ["Cardiac Catheterization Laboratory", "Open Heart"],
-    "Diagnostic Services": [
-      "Magnetic Resonance Imaging (MRI)",
-      "Diagnostic Radioisotope Facility",
-      "Lithotripsy",
-    ],
   };
 
   const handleServiceChange = (service, checked) => {
@@ -107,7 +99,10 @@ const Step5 = () => {
 
   const handleDateAdd = (dateType, date) => {
     const currentDates = formData[dateType] || [];
-    const maxDates = dateType === "thrombolyticDates" ? 25 : 15;
+    const maxDates =
+      dateType === "thrombolyticDates"
+        ? DATE_LIMITS.THROMBOLYTIC_MAX
+        : DATE_LIMITS.THROMBECTOMY_MAX;
 
     // Validate that date is not in the future
     const today = new Date();
@@ -148,7 +143,7 @@ const Step5 = () => {
   };
 
   // Filter services based on search term
-  const filteredCategories = Object.entries(serviceCategories).reduce(
+  const filteredCategories = Object.entries(SERVICE_CATEGORIES).reduce(
     (acc, [category, services]) => {
       const filtered = services.filter((service) =>
         service.toLowerCase().includes(searchTerm.toLowerCase())
@@ -169,21 +164,13 @@ const Step5 = () => {
           <p className={styles.sectionSubtitle}>
             Primary Site Service offering
           </p>
-
           {/* Service Tabs */}
           <div
             className={styles.serviceTabs}
             role="tablist"
             aria-label="Service categories"
           >
-            {[
-              "All Services",
-              "Clinical",
-              "Surgical",
-              "Diagnostic",
-              "Rehabilitation",
-              "Specialty",
-            ].map((tab) => (
+            {SERVICE_TABS.map((tab) => (
               <button
                 key={tab}
                 role="tab"
@@ -197,7 +184,6 @@ const Step5 = () => {
               </button>
             ))}
           </div>
-
           {/* Search */}
           <div className={styles.searchContainer}>
             <input
@@ -210,7 +196,6 @@ const Step5 = () => {
             />
             <SearchIcon className={styles.searchIcon} aria-hidden="true" />
           </div>
-
           {/* Service Categories */}
           <div className={styles.serviceGrid}>
             {Object.entries(filteredCategories).map(([category, services]) => (
@@ -242,7 +227,6 @@ const Step5 = () => {
               </div>
             ))}
           </div>
-
           {/* Add Other Service */}
           <button
             type="button"
@@ -251,7 +235,6 @@ const Step5 = () => {
           >
             + Add Other Service
           </button>
-
           {/* Other Service Input */}
           {showOtherService && (
             <div className={styles.otherServiceSection}>
@@ -279,7 +262,6 @@ const Step5 = () => {
               </div>
             </div>
           )}
-
           {/* Standards Dropdown */}
           <div className={styles.formGroup}>
             <label className={styles.label}>Standards to Apply</label>
@@ -291,10 +273,11 @@ const Step5 = () => {
               }}
             >
               <option value="">Select Standard(s)</option>
-              <option value="Action1">Action1</option>
-              <option value="Action2">Action2</option>
-              <option value="Action3">Action3</option>
-              <option value="Action4">Action4</option>
+              {STANDARDS_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
 
             {(formData.selectedStandards || []).length > 0 && (
@@ -323,7 +306,6 @@ const Step5 = () => {
               </div>
             )}
           </div>
-
           {/* Date Fields */}
           <div className={styles.formRow}>
             <div className={styles.formGroup}>
@@ -357,7 +339,6 @@ const Step5 = () => {
               />
             </div>
           </div>
-
           {/* Thrombolytic Dates */}
           <div className={styles.formGroup}>
             <label className={styles.label}>
@@ -402,11 +383,11 @@ const Step5 = () => {
               </div>
             )}
             <p className={styles.helperText}>
-              Selected: {(formData.thrombolyticDates || []).length}/25
+              Selected: {(formData.thrombolyticDates || []).length}/
+              {DATE_LIMITS.THROMBOLYTIC_MAX}
             </p>
           </div>
-
-          {/* Thrombectomy Dates - Similar structure */}
+          {/* Thrombectomy Dates - Similar structure */}}
           <div className={styles.formGroup}>
             <label className={styles.label}>
               Dates of last fifteen thrombectomies
@@ -450,7 +431,8 @@ const Step5 = () => {
               </div>
             )}
             <p className={styles.helperText}>
-              Selected: {(formData.thrombectomyDates || []).length}/15
+              Selected: {(formData.thrombectomyDates || []).length}/
+              {DATE_LIMITS.THROMBECTOMY_MAX}
             </p>
           </div>
         </section>

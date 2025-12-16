@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useFormContext } from "/src/contexts/FormContext";
 import Navigation from "../../common/Navigation/Navigation";
+import { FACILITY_TYPES } from "/src/constants";
 import styles from "./Step2.module.css";
 
 const Step2 = () => {
@@ -26,15 +27,6 @@ const Step2 = () => {
     alert("Progress saved!");
   };
 
-  const facilityTypes = [
-    "Short-Term Acute Care",
-    "Long-Term Acute Care",
-    "Critical Access",
-    "Children's",
-    "Free-Standing Psychiatric",
-    "Other",
-  ];
-
   return (
     <div className={styles.step}>
       <div className={styles.container}>
@@ -50,7 +42,7 @@ const Step2 = () => {
               </label>
 
               <div className={styles.radioGroup}>
-                {facilityTypes.map((type, index) => (
+                {FACILITY_TYPES.map((type, index) => (
                   <div key={index} className={styles.radioOption}>
                     <input
                       {...register("facilityType", {
