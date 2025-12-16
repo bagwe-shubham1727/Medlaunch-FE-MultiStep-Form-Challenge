@@ -46,6 +46,24 @@
     margin: 0 0 var(--spacing-md) 0;
 }
 
+/* Section gap divider */
+.sectionGap {
+    height: 32px;
+}
+
+/* Billing Address inside Invoicing Contact */
+.billingAddressSection {
+    margin-top: 0;
+}
+
+.billingTitle {
+    font-family: var(--font-family);
+    font-size: var(--font-size-large);
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
 /* Form elements */
 .formGroup {
     margin-bottom: var(--spacing-md);
