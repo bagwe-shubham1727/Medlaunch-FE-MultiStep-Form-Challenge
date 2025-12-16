@@ -12,12 +12,19 @@ const Step5 = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showOtherService, setShowOtherService] = useState(false);
   const [strokeCertError, setStrokeCertError] = useState("");
+  const [thrombolyticError, setThrombolyticError] = useState("");
+  const [thrombectomyError, setThrombectomyError] = useState("");
 
   // Get tomorrow's date as minimum for stroke certification expiry
   const getTomorrowDate = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split("T")[0];
+  };
+
+  // Get today's date as maximum for thrombolytic and thrombectomy dates
+  const getTodayDate = () => {
+    return new Date().toISOString().split("T")[0];
   };
 
   const handleStrokeCertificationChange = (value) => {
@@ -101,6 +108,27 @@ const Step5 = () => {
   const handleDateAdd = (dateType, date) => {
     const currentDates = formData[dateType] || [];
     const maxDates = dateType === "thrombolyticDates" ? 25 : 15;
+
+    // Validate that date is not in the future
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = new Date(date);
+
+    if (selectedDate > today) {
+      if (dateType === "thrombolyticDates") {
+        setThrombolyticError("Date cannot be greater than today's date");
+      } else {
+        setThrombectomyError("Date cannot be greater than today's date");
+      }
+      return;
+    }
+
+    // Clear error if valid
+    if (dateType === "thrombolyticDates") {
+      setThrombolyticError("");
+    } else {
+      setThrombectomyError("");
+    }
 
     if (
       date &&
@@ -321,12 +349,18 @@ const Step5 = () => {
             </label>
             <input
               type="date"
-              className={styles.input}
+              className={`${styles.input} ${
+                thrombolyticError ? styles.inputError : ""
+              }`}
+              max={getTodayDate()}
               onChange={(e) => {
                 handleDateAdd("thrombolyticDates", e.target.value);
                 e.target.value = "";
               }}
             />
+            {thrombolyticError && (
+              <span className={styles.errorText}>{thrombolyticError}</span>
+            )}
 
             {(formData.thrombolyticDates || []).length > 0 && (
               <div className={styles.tagContainer}>
@@ -358,12 +392,18 @@ const Step5 = () => {
             </label>
             <input
               type="date"
-              className={styles.input}
+              className={`${styles.input} ${
+                thrombectomyError ? styles.inputError : ""
+              }`}
+              max={getTodayDate()}
               onChange={(e) => {
                 handleDateAdd("thrombectomyDates", e.target.value);
                 e.target.value = "";
               }}
             />
+            {thrombectomyError && (
+              <span className={styles.errorText}>{thrombectomyError}</span>
+            )}
 
             {(formData.thrombectomyDates || []).length > 0 && (
               <div className={styles.tagContainer}>
