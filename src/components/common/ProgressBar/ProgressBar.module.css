@@ -1,41 +1,44 @@
 .progressBar {
-    width: 960px;
-    height: 123px;
-    margin: 112px auto 0;
     border-radius: 8px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    padding: 16px;
+    height: 123px;
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
 }
 
 .titleSection {
+    height: 44px;
+    padding: 0;
     margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 .container {
     max-width: 960px;
-    margin: 0 auto;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .title {
+    font-family: var(--font-family);
     font-size: 32px;
     font-weight: 700;
+    line-height: 100%;
     color: var(--dark-gray2);
-    margin: 0;
 }
 
 .stepText {
+    font-family: var(--font-family);
     font-size: var(--font-size-base);
     color: var(--dark-gray2);
+    font-weight: 400;
 }
 
 .progressSection {
     padding-bottom: 0;
+    height: 31px;
 }
 
 .progressLines {
@@ -53,54 +56,109 @@
 
 .progressLineWrapper {
     position: relative;
-    width: 100%;
     margin-bottom: var(--spacing-sm);
 }
 
 .progressLineBackground {
-    width: 100%;
+    width: 155px;
     height: 8px;
     border-radius: 64px;
-    background-color: var(--medium-gray);
 }
 
 .progressLineBackground.completed {
     background-color: var(--accent-blue);
 }
 
+.progressLineBackground.current {
+    background-color: var(--medium-gray);
+}
+
+.progressLineBackground.inactive {
+    background-color: var(--medium-gray);
+}
+
 .progressLineActive {
     position: absolute;
     top: 0;
     left: 0;
-    width: 77%;
+    width: 120px;
     height: 8px;
     border-radius: 64px;
     background-color: var(--accent-blue);
 }
 
 .stepLabel {
+    font-family: var(--font-family);
     font-size: var(--font-size-xsmall);
     color: var(--dark-gray);
     text-align: center;
     font-weight: 600;
 }
 
-/* Responsive styles */
+/* Responsive Progress Bar */
 @media (max-width: 768px) {
+    .progressBar {
+        margin-left: var(--spacing-md);
+        margin-right: var(--spacing-md);
+        margin-bottom: var(--spacing-2xl);
+        padding: 12px;
+        height: auto;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+    }
+
     .title {
         font-size: 24px;
     }
 
+    .stepText {
+        font-size: var(--font-size-small);
+    }
+
+    .progressLines {
+        gap: 4px;
+    }
+
+    .progressLineBackground,
+    .progressLineActive {
+        width: 100%;
+    }
+
+    .progressLineActive {
+        width: 77%;
+    }
+
     .stepLabel {
         font-size: 10px;
+        line-height: 1.2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
+    .progressBar {
+        margin-bottom: 64px;
+    }
+
+    .titleSection {
         flex-direction: column;
         align-items: flex-start;
+        height: auto;
         gap: var(--spacing-sm);
+    }
+
+    .container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .stepText {
+        align-self: flex-end;
     }
 
     .title {
@@ -115,7 +173,9 @@
 
     .stepContainer {
         flex-direction: row;
+        justify-content: space-between;
         width: 100%;
+        align-items: center;
     }
 
     .progressLineWrapper {
@@ -124,8 +184,17 @@
         margin-bottom: 0;
     }
 
+    .progressLineBackground,
+    .progressLineActive {
+        width: 100%;
+    }
+
+    .progressLineActive {
+        width: 77%;
+    }
+
     .stepLabel {
         min-width: 80px;
-        text-align: left;
+        font-size: 9px;
     }
 }

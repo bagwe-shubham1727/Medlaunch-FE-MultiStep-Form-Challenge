@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useFormContext } from "/src/contexts/FormContext";
-import Navigation from "/components/common/Navigation/Navigation";
+import Navigation from "../../common/Navigation/Navigation.jsx";
 import styles from "./Step1.module.css";
 
 const Step1 = () => {
